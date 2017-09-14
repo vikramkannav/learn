@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+//=======Add after auth============================
+Route::get('/home', 'HomeController@index')->name('home');
