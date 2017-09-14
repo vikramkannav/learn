@@ -4,6 +4,11 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+//==============Add for slack notification=================
+use App\User;
+use App\Notifications\SlackNotification;
+//===============================================================
+
 
 class Handler extends ExceptionHandler
 {
@@ -35,8 +40,10 @@ class Handler extends ExceptionHandler
      * @return void
      */
     public function report(Exception $exception)
+
     {
-        parent::report($exception);
+        $this->sendErrorsToSlack($exception); // sends an slack
+         parent::report($exception);
     }
 
     /**
@@ -50,4 +57,13 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    //===========================This function is add for the slack notification==========
+    public function sendErrorsToSlack($exception)
+    {
+        $user= (new User)->notify(new SlackNotification($exception));
+
+    }
+
+
 }
