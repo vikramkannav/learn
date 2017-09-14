@@ -135,6 +135,9 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    //==================add for facebook==========================
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    //============================================================
 
     'providers' => [
 
@@ -176,6 +179,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        //==========add for facebook====================
+        Laravel\Socialite\SocialiteServiceProvider::class,
+       //================================================
 
     ],
 
